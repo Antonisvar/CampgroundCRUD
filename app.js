@@ -24,7 +24,7 @@ const mongosan = require('express-mongo-sanitize');
 
 const MongoStore = require('connect-mongo');
 
-const db_url = 'mongodb://localhost:27017/yelp-camp' ;
+const db_url = process.env.DB_URL ;
 //'mongodb://localhost:27017/yelp-camp'       process.env.DB_URL;
 mongoose.connect(db_url);
 
@@ -154,7 +154,9 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render('error', { err });
 })
 
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+const Port = process.env.PORT;
+
+app.listen(Port, () => {
+    console.log('Server is running on port ' + Port);
 });
 
